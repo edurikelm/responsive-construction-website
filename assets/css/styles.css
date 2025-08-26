@@ -528,6 +528,16 @@ img {
   margin-bottom: 1.5rem;
 }
 
+.projects__link {
+  margin-top: 1rem;
+  font-size: var(--small-font-size);
+  cursor: pointer;
+}
+
+.projects__link i {
+  font-size: 1.25rem;
+}
+
 /*=============== CONTACT ===============*/
 .contact__container {
   row-gap: 3rem;
@@ -719,6 +729,150 @@ img {
   bottom: 3rem;
 }
 
+/*=============== MODAL ===============*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-fixed);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s, visibility .3s;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  background-color: var(--container-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  z-index: calc(var(--z-fixed) + 1);
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.modal__title {
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--title-color);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color .3s;
+}
+
+.modal__close:hover {
+  background-color: var(--gray-border);
+}
+
+.modal__body {
+  padding: 1.5rem;
+}
+
+.modal__swiper {
+  position: relative;
+}
+
+.modal__swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__swiper .swiper-slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.modal__swiper-next,
+.modal__swiper-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--container-color);
+  border: 2px solid var(--first-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--first-color);
+  cursor: pointer;
+  transition: all .3s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.modal__swiper-next {
+  right: 1rem;
+}
+
+.modal__swiper-prev {
+  left: 1rem;
+}
+
+.modal__swiper-next:hover,
+.modal__swiper-prev:hover {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.modal__swiper-pagination {
+  position: relative !important;
+  margin-top: 1rem;
+}
+
+.modal__swiper-pagination .swiper-pagination-bullet {
+  background-color: var(--text-color-light);
+  opacity: 1;
+  transition: background-color .3s;
+}
+
+.modal__swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--first-color);
+}
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 340px) {
@@ -743,6 +897,39 @@ img {
   
   .about__list {
     grid-template-columns: repeat(1, 200px);
+  }
+
+  /* Modal responsive */
+  .modal__content {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .modal__header {
+    padding: 1rem;
+  }
+  
+  .modal__body {
+    padding: 1rem;
+  }
+  
+  .modal__swiper .swiper-slide img {
+    height: 250px;
+  }
+  
+  .modal__swiper-next,
+  .modal__swiper-prev {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+  
+  .modal__swiper-next {
+    right: 0.5rem;
+  }
+  
+  .modal__swiper-prev {
+    left: 0.5rem;
   }
   .about__img-1 {
     width: 150px;

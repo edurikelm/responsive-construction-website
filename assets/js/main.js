@@ -95,3 +95,106 @@ sr.reveal(`.home__images`, {origin: 'bottom', delay: 1000})
 sr.reveal(`.about__images, .contact__img`, {origin: 'left'})
 sr.reveal(`.about__data, .contact__data`, {origin: 'right'})
 sr.reveal(`.projects__card`, {interval: 100})
+
+/*=============== PROJECT MODAL ===============*/
+let modalSwiper;
+
+// Datos de los proyectos con sus imágenes
+const projectsData = {
+   project1: {
+      title: "Two Story House",
+      images: [
+         "assets/img/projects-img-1.png",
+         "assets/img/home-img-1.png",
+         "assets/img/about-img-1.png"
+      ]
+   },
+   project2: {
+      title: "Stairs & Columns",
+      images: [
+         "assets/img/projects-img-2.png",
+         "assets/img/home-img-2.png",
+         "assets/img/about-img-2.png"
+      ]
+   },
+   project3: {
+      title: "Kitchen Room",
+      images: [
+         "assets/img/projects-img-3.png",
+         "assets/img/contact-img.png",
+         "assets/img/home-img-1.png"
+      ]
+   }
+}
+
+// Función para abrir el modal
+function openProjectModal(projectId) {
+   const modal = document.getElementById('project-modal');
+   const modalTitle = document.getElementById('modal-title');
+   const swiperWrapper = document.getElementById('modal-swiper-wrapper');
+   
+   // Obtener datos del proyecto
+   const project = projectsData[projectId];
+   
+   if (!project) return;
+   
+   // Actualizar título
+   modalTitle.textContent = `Fotos - ${project.title}`;
+   
+   // Limpiar slides anteriores
+   swiperWrapper.innerHTML = '';
+   
+   // Agregar nuevas imágenes
+   project.images.forEach((imageSrc, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<img src="${imageSrc}" alt="Foto ${index + 1} del proyecto">`;
+      swiperWrapper.appendChild(slide);
+   });
+   
+   // Mostrar modal
+   modal.classList.add('show');
+   document.body.style.overflow = 'hidden';
+   
+   // Inicializar o actualizar Swiper
+   if (modalSwiper) {
+      modalSwiper.destroy(true, true);
+   }
+   
+   modalSwiper = new Swiper('.modal__swiper', {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 10,
+      centeredSlides: true,
+      
+      navigation: {
+         nextEl: '.modal__swiper-next',
+         prevEl: '.modal__swiper-prev',
+      },
+      
+      pagination: {
+         el: '.modal__swiper-pagination',
+         clickable: true,
+      },
+   });
+}
+
+// Función para cerrar el modal
+function closeProjectModal() {
+   const modal = document.getElementById('project-modal');
+   modal.classList.remove('show');
+   document.body.style.overflow = '';
+   
+   // Destruir Swiper
+   if (modalSwiper) {
+      modalSwiper.destroy(true, true);
+      modalSwiper = null;
+   }
+}
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', function(event) {
+   if (event.key === 'Escape') {
+      closeProjectModal();
+   }
+});
