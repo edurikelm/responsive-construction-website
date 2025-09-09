@@ -938,6 +938,112 @@ img {
   background-color: var(--first-color);
 }
 
+/*=============== SERVICE JOBS LIST STYLES ===============*/
+.enhanced-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.enhanced-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.enhanced-list::-webkit-scrollbar-track {
+  background: hsl(255, 6%, 95%);
+  border-radius: 10px;
+}
+
+.enhanced-list::-webkit-scrollbar-thumb {
+  background: var(--first-color);
+  border-radius: 10px;
+}
+
+.service-job-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.6s ease-out forwards;
+  margin-bottom: 1rem;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-job-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, hsl(0, 0%, 98%) 0%, hsl(0, 0%, 96%) 100%);
+  border-radius: 12px;
+  border-left: 4px solid var(--first-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-job-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, hsl(18, 95%, 55%, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-job-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px hsla(255, 20%, 10%, 0.15);
+  border-left-color: var(--second-color);
+}
+
+.service-job-content:hover::before {
+  opacity: 1;
+}
+
+.service-job-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--first-gradient);
+  border-radius: 50%;
+  color: var(--white-color);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.service-job-content:hover .service-job-icon {
+  transform: scale(1.1);
+}
+
+.service-job-text {
+  flex: 1;
+  color: var(--text-color);
+  font-size: var(--normal-font-size);
+  line-height: 1.6;
+  font-weight: var(--font-medium);
+}
+
+/* Título del modal mejorado */
+.modal__title i {
+  color: var(--first-color);
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 340px) {
@@ -995,6 +1101,30 @@ img {
   
   .modal__swiper-prev {
     left: 0.5rem;
+  }
+  
+  /* Service jobs responsive */
+  .service-job-content {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .service-job-icon {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  
+  .service-job-text {
+    font-size: var(--small-font-size);
+  }
+  
+  .modal__title {
+    font-size: var(--h3-font-size);
+  }
+  
+  .modal__title i {
+    font-size: 1.25rem;
   }
   .about__img-1 {
     width: 150px;

@@ -259,20 +259,54 @@ function showServiceJobs(serviceId) {
    const title = document.getElementById('service-jobs-title');
    const list = document.getElementById('service-jobs-list');
    let serviceName = '';
+   let serviceIcon = '';
+   
    switch(serviceId) {
-      case 'media-tension': serviceName = 'Media Tensión'; break;
-      case 'home-areas': serviceName = 'Áreas de Hogar'; break;
-      case 'maintenance-repair': serviceName = 'Mantenimiento y Reparación'; break;
-      default: serviceName = 'Servicio';
+      case 'media-tension': 
+         serviceName = 'Media Tensión'; 
+         serviceIcon = 'ri-flashlight-line';
+         break;
+      case 'baja-tension': 
+         serviceName = 'Baja Tensión'; 
+         serviceIcon = 'ri-plug-line';
+         break;
+      case 'ingenieria-estudios': 
+         serviceName = 'Ingeniería y Estudios'; 
+         serviceIcon = 'ri-file-text-line';
+         break;
+      case 'foto-clima': 
+         serviceName = 'Fotovoltaica y Climatización'; 
+         serviceIcon = 'ri-sun-line';
+         break;
+      default: 
+         serviceName = 'Servicio';
+         serviceIcon = 'ri-service-line';
    }
-   title.textContent = `Trabajos de ${serviceName}`;
+   
+   title.innerHTML = `<i class="${serviceIcon}"></i> Trabajos de ${serviceName}`;
    list.innerHTML = '';
+   list.className = 'service-jobs-list enhanced-list';
+   
    const jobs = serviceJobsData[serviceId] || [];
-   jobs.forEach(job => {
+   jobs.forEach((job, index) => {
       const li = document.createElement('li');
-      li.textContent = job;
+      li.className = 'service-job-item';
+      li.innerHTML = `
+         <div class="service-job-content">
+            <div class="service-job-icon">
+               <i class="ri-check-line"></i>
+            </div>
+            <div class="service-job-text">
+               ${job}
+            </div>
+         </div>
+      `;
+      
+      // Agregar animación escalonada
+      li.style.animationDelay = `${index * 0.1}s`;
       list.appendChild(li);
    });
+   
    modal.style.display = 'block';
    setTimeout(() => modal.classList.add('show'), 10);
    document.body.style.overflow = 'hidden';
