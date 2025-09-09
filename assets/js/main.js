@@ -196,5 +196,132 @@ function closeProjectModal() {
 document.addEventListener('keydown', function(event) {
    if (event.key === 'Escape') {
       closeProjectModal();
+      closeServiceJobsModal();
    }
 });
+
+// ================= SERVICIOS: MODAL DE TRABAJOS Y FOTOS =================
+const serviceJobsData = {
+   'media-tension': [
+      'Tendido de alimentadores en media tensión aéreos y soterrados.',
+      'Instalación de transformadores de distribución tipos aéreos y pad mounted.',
+      'Instalación de equipos Reconectadores.',
+      'Instalación de transformadores reductores.',
+      'Instalación de equipos compactos de medida.',
+      'Empalmes en media tensión.',
+      'Mantenimiento preventivo y correctivo de instalaciones eléctricas en media tensión.'
+   ],
+   'baja-tension': [
+      'Instalaciones eléctricas industriales (trifásicas).',
+      'Instalación de grupos generador con tableros de transferencia automática.',
+      'Instalación de banco de condensadores.',
+      'Instalaciones eléctricas domiciliarias en EMT, Conduit y bandejas porta conductoras.',
+      'Empalmes en baja tensión.',
+   ],
+   'ingenieria-estudios': [
+      'Declaraciones eléctricas TE1, TE2, TE3, TE4 Y TE6.',
+      'Planos electricos.',
+      'Memorias de cálculos.',
+      'Mediciones de suelos.',
+      'Medición de mallas a tierra.',
+      'Verificaciones iniciales eléctricas.',
+   ],
+   'foto-clima': [
+      'Instalación de sistemas de energía fotovoltaica para viviendas y comercios.',
+      'Instalación de sistemas de climatización eléctrica (aire acondicionado).',
+   ]
+};
+
+const servicePhotosData = {
+   'media-tension': [
+      'assets/img/media-tension/6e840dd7-8917-4d86-9c8d-ae223bc590b2.jpg',
+      'assets/img/media-tension/b10d20c4-2499-480c-b496-3dfd22edc906.jpg',
+      'assets/img/media-tension/ce1fd11d-b955-4afc-b858-ebd8c2647150.jpg',
+      'assets/img/media-tension/b6d88839-1d27-4f3e-8911-fb9d14bf5254.jpg',
+   ],
+   'baja-tension': [
+      'assets/img/baja-tension/89d22723-74aa-4db9-8c4e-09312807dcee.jpg',
+      'assets/img/baja-tension/e5841adc-a69d-40b2-afaa-d30f93ad2811.jpg',
+      'assets/img/baja-tension/d044af0c-0ca1-4726-aea5-e8439169aa38.jpg',
+      'assets/img/baja-tension/c5331e4a-4be3-4af8-92d4-419b777ffbe9.jpg'
+   ],
+   'ingenieria-estudios': [
+      'assets/img/ingenieria-estudios/96db83fd-47da-4a07-b7a5-ec3e64b4d48d.jpg',
+      'assets/img/ingenieria-estudios/23c54153-c6fe-41f9-a2b9-f902879dc155.jpg',
+      'assets/img/ingenieria-estudios/bca786e0-0278-4ab9-afbb-7b127feede64.jpg',
+      'assets/img/ingenieria-estudios/f68fd330-b25b-499c-906f-f45fa073d9f2.jpg'
+   ],
+   'foto-clima': []
+};
+
+function showServiceJobs(serviceId) {
+   const modal = document.getElementById('service-jobs-modal');
+   const title = document.getElementById('service-jobs-title');
+   const list = document.getElementById('service-jobs-list');
+   let serviceName = '';
+   switch(serviceId) {
+      case 'media-tension': serviceName = 'Media Tensión'; break;
+      case 'home-areas': serviceName = 'Áreas de Hogar'; break;
+      case 'maintenance-repair': serviceName = 'Mantenimiento y Reparación'; break;
+      default: serviceName = 'Servicio';
+   }
+   title.textContent = `Trabajos de ${serviceName}`;
+   list.innerHTML = '';
+   const jobs = serviceJobsData[serviceId] || [];
+   jobs.forEach(job => {
+      const li = document.createElement('li');
+      li.textContent = job;
+      list.appendChild(li);
+   });
+   modal.style.display = 'block';
+   setTimeout(() => modal.classList.add('show'), 10);
+   document.body.style.overflow = 'hidden';
+}
+
+function closeServiceJobsModal() {
+   const modal = document.getElementById('service-jobs-modal');
+   modal.classList.remove('show');
+   setTimeout(() => { modal.style.display = 'none'; }, 300);
+   document.body.style.overflow = '';
+}
+
+function showServicePhotos(serviceId) {
+   const modal = document.getElementById('project-modal');
+   const modalTitle = document.getElementById('modal-title');
+   const swiperWrapper = document.getElementById('modal-swiper-wrapper');
+   let serviceName = '';
+   switch(serviceId) {
+      case 'media-tension': serviceName = 'Media Tensión'; break;
+      case 'baja-tension': serviceName = 'Baja Tensión'; break;
+      case 'ingenieria-estudios': serviceName = 'Ingeniería y Estudios'; break;
+      default: serviceName = 'Servicio';
+   }
+   modalTitle.textContent = `Fotos de ${serviceName}`;
+   swiperWrapper.innerHTML = '';
+   const images = servicePhotosData[serviceId] || [];
+   images.forEach((imageSrc, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<img src="${imageSrc}" alt="Foto ${index + 1} de ${serviceName}">`;
+      swiperWrapper.appendChild(slide);
+   });
+   modal.classList.add('show');
+   document.body.style.overflow = 'hidden';
+   if (modalSwiper) {
+      modalSwiper.destroy(true, true);
+   }
+   modalSwiper = new Swiper('.modal__swiper', {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 10,
+      centeredSlides: true,
+      navigation: {
+         nextEl: '.modal__swiper-next',
+         prevEl: '.modal__swiper-prev',
+      },
+      pagination: {
+         el: '.modal__swiper-pagination',
+         clickable: true,
+      },
+   });
+}
