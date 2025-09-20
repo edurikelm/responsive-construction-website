@@ -48,6 +48,10 @@
                </li>
 
                <li>
+                  <a href="#gallery" class="nav__link">Galería</a>
+               </li>
+
+               <li>
                   <a href="#contact" class="nav__link button">Contacto</a>
                </li>
             </ul>
@@ -75,14 +79,13 @@
             <div class="home__content grid">
                <div class="home__data">
                   <h1 class="home__title">
-                     Algún Titulo <br>
-                     Bonito <br>
-                     Que Se Les Ocurra
+                       Energía en <br>
+                       cada Proyecto <br>
                   </h1>
 
                   <p class="home__description">
-                     We provide the best home design, construction and
-                     maintenance services for you and your family.
+                     Brindamos servicios eléctricos integrales de alta calidad para proyectos residenciales, comerciales
+                     e industriales <br> con seguridad y eficiencia garantizada.
                   </p>
 
                   <div class="home__buttons">
@@ -121,38 +124,37 @@
             <div class="about__data">
                <span class="section__subtitle">NOSOTROS</span>
                <h2 class="section__title">
-                  We Provide The Best <br> Service To Build
+                  Expertos en Soluciones <br> Eléctricas Integrales
                </h2>
 
                <p class="about__description">
-                  We strive to provide the best professionals
-                  to make your project a construction masterpiece,
-                  something unique and unmatched.
+                  Somos una empresa especializada en servicios eléctricos integrales. <br> Nuestro compromiso es
+                  garantizar la seguridad, eficiencia y confiabilidad en cada proyecto que realizamos.
                </p>
 
                <ul class="about__list grid">
                   <li class="about__list-item">
                      <i class="ri-checkbox-circle-line"></i>
-                     <span>Professional workers</span>
+                     <span>Compromiso con la seguridad</span>
                   </li>
 
                   <li class="about__list-item">
                      <i class="ri-checkbox-circle-line"></i>
-                     <span>Guaranteed quality</span>
+                     <span>Calidad garantizada</span>
                   </li>
 
                   <li class="about__list-item">
                      <i class="ri-checkbox-circle-line"></i>
-                     <span>Extensive experience</span>
+                     <span>Amplia experiencia</span>
                   </li>
 
                   <li class="about__list-item">
                      <i class="ri-checkbox-circle-line"></i>
-                     <span>We quote your project</span>
+                     <span>Presupuestamos tu proyecto</span>
                   </li>
                </ul>
 
-               <a href="#projects" class="button">View Projects</a>
+               <a href="#gallery" class="button">Ver Galería</a>
             </div>
 
             <div class="about__images">
@@ -197,7 +199,7 @@
                      </div>
                      <div class="services__buttons-bottom">
                         <button class="button__list" onclick="showServiceJobs('media-tension')">Trabajos</button>
-                        <button class="button__photos" onclick="showServicePhotos('media-tension')">Fotos</button>
+                        <!-- <button class="button__photos" onclick="showServicePhotos('media-tension')">Fotos</button> -->
                      </div>
                   </article>
 
@@ -216,7 +218,7 @@
                      </div>
                      <div class="services__buttons-bottom">
                         <button class="button__list" onclick="showServiceJobs('baja-tension')">Trabajos</button>
-                        <button class="button__photos" onclick="showServicePhotos('baja-tension')">Fotos</button>
+                        <!-- <button class="button__photos" onclick="showServicePhotos('baja-tension')">Fotos</button> -->
                      </div>
                   </article>
 
@@ -235,7 +237,7 @@
                      </div>
                      <div class="services__buttons-bottom">
                         <button class="button__list" onclick="showServiceJobs('ingenieria-estudios')">Trabajos</button>
-                        <button class="button__photos" onclick="showServicePhotos('ingenieria-estudios')">Fotos</button>
+                        <!-- <button class="button__photos" onclick="showServicePhotos('ingenieria-estudios')">Fotos</button> -->
                      </div>
                   </article>
 
@@ -254,19 +256,27 @@
                      </div>
                      <div class="services__buttons-bottom">
                         <button class="button__list" onclick="showServiceJobs('foto-clima')">Trabajos</button>
-                        <button class="button__photos" onclick="showServicePhotos('foto-clima')">Fotos</button>
+                        <!-- <button class="button__photos" onclick="showServicePhotos('foto-clima')">Fotos</button> -->
                      </div>
                   </article>
                </div>
             </div>
 
             <!-- Navigation buttons -->
-            <div class="swiper-button-prev">
+            <!-- <div class="swiper-button-prev">
                <i class="ri-arrow-left-line"></i>
             </div>
 
             <div class="swiper-button-next">
                <i class="ri-arrow-right-line"></i>
+            </div> -->
+
+            <!-- Autoplay indicators -->
+            <div class="services__autoplay-indicator">
+               <span class="services__indicator-dot active" data-slide="0"></span>
+               <span class="services__indicator-dot" data-slide="1"></span>
+               <span class="services__indicator-dot" data-slide="2"></span>
+               <span class="services__indicator-dot" data-slide="3"></span>
             </div>
          </div>
 
@@ -338,6 +348,143 @@
                   </a>
                </div>
             </article>
+         </div>
+      </section>
+
+      <!--==================== GALLERY ====================-->
+      <section class="gallery-section section" id="gallery">
+         <div class="container">
+            <div class="gallery-header">
+               <h2 class="section__title">
+                  Galería de <span>Trabajos</span>
+               </h2>
+               <p class="gallery-subtitle">Explora nuestra colección de proyectos con transiciones elegantes</p>
+            </div>
+
+            <div class="gallery-filter-buttons">
+               <button class="gallery-filter-btn active" data-filter="all">Todas</button>
+               <button class="gallery-filter-btn" data-filter="media-tension">Media Tensión</button>
+               <button class="gallery-filter-btn" data-filter="baja-tension">Baja Tensión</button>
+               <button class="gallery-filter-btn" data-filter="ingenieria">Ingeniería</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+               <!-- Media Tensión -->
+               <div class="gallery-photo-card" data-category="media-tension">
+                  <img src="assets/img/media-tension/6e840dd7-8917-4d86-9c8d-ae223bc590b2.jpg"
+                     alt="Instalación de Transformadores" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Instalación de Transformadores</h3>
+                     <p class="gallery-photo-description">Montaje profesional de transformadores de distribución en
+                        media tensión.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="media-tension">
+                  <img src="assets/img/media-tension/b10d20c4-2499-480c-b496-3dfd22edc906.jpg"
+                     alt="Tendido de Alimentadores" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Tendido de Alimentadores</h3>
+                     <p class="gallery-photo-description">Instalación de líneas de alimentación aéreas en media tensión.
+                     </p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="media-tension">
+                  <img src="assets/img/media-tension/ce1fd11d-b955-4afc-b858-ebd8c2647150.jpg"
+                     alt="Equipos Reconectadores" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Equipos Reconectadores</h3>
+                     <p class="gallery-photo-description">Instalación de sistemas de reconexión automática en redes
+                        eléctricas.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="media-tension">
+                  <img src="assets/img/media-tension/b6d88839-1d27-4f3e-8911-fb9d14bf5254.jpg"
+                     alt="Mantenimiento Media Tensión" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Mantenimiento Preventivo</h3>
+                     <p class="gallery-photo-description">Servicio de mantenimiento especializado en equipos de media
+                        tensión.</p>
+                  </div>
+               </div>
+
+               <!-- Baja Tensión -->
+               <div class="gallery-photo-card" data-category="baja-tension">
+                  <img src="assets/img/baja-tension/89d22723-74aa-4db9-8c4e-09312807dcee.jpg"
+                     alt="Instalaciones Industriales" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Instalaciones Industriales</h3>
+                     <p class="gallery-photo-description">Sistemas eléctricos trifásicos para uso industrial.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="baja-tension">
+                  <img src="assets/img/baja-tension/e5841adc-a69d-40b2-afaa-d30f93ad2811.jpg"
+                     alt="Instalaciones Domiciliarias" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Instalaciones Domiciliarias</h3>
+                     <p class="gallery-photo-description">Sistemas eléctricos residenciales con conduit y bandejas.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="baja-tension">
+                  <img src="assets/img/baja-tension/d044af0c-0ca1-4726-aea5-e8439169aa38.jpg" alt="Grupos Generadores"
+                     class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Grupos Generadores</h3>
+                     <p class="gallery-photo-description">Instalación de sistemas de respaldo con transferencia
+                        automática.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="baja-tension">
+                  <img src="assets/img/baja-tension/c5331e4a-4be3-4af8-92d4-419b777ffbe9.jpg"
+                     alt="Banco de Condensadores" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Banco de Condensadores</h3>
+                     <p class="gallery-photo-description">Sistemas de corrección de factor de potencia.</p>
+                  </div>
+               </div>
+
+               <!-- Ingeniería -->
+               <div class="gallery-photo-card" data-category="ingenieria">
+                  <img src="assets/img/ingenieria-estudios/96db83fd-47da-4a07-b7a5-ec3e64b4d48d.jpg"
+                     alt="Planos Eléctricos" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Planos Eléctricos</h3>
+                     <p class="gallery-photo-description">Diseño técnico y documentación de proyectos eléctricos.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="ingenieria">
+                  <img src="assets/img/ingenieria-estudios/23c54153-c6fe-41f9-a2b9-f902879dc155.jpg"
+                     alt="Verificaciones Eléctricas" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Verificaciones Eléctricas</h3>
+                     <p class="gallery-photo-description">Inspecciones técnicas y certificaciones eléctricas.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="ingenieria">
+                  <img src="assets/img/ingenieria-estudios/bca786e0-0278-4ab9-afbb-7b127feede64.jpg"
+                     alt="Mediciones de Suelos" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Mediciones de Suelos</h3>
+                     <p class="gallery-photo-description">Estudios de resistividad y sistemas de puesta a tierra.</p>
+                  </div>
+               </div>
+
+               <div class="gallery-photo-card" data-category="ingenieria">
+                  <img src="assets/img/ingenieria-estudios/f68fd330-b25b-499c-906f-f45fa073d9f2.jpg"
+                     alt="Declaraciones Eléctricas" class="gallery-photo-image">
+                  <div class="gallery-photo-overlay">
+                     <h3 class="gallery-photo-title">Declaraciones Eléctricas</h3>
+                     <p class="gallery-photo-description">Tramitación de TE1, TE2, TE3, TE4 y TE6.</p>
+                  </div>
+               </div>
+            </div>
          </div>
       </section>
 
@@ -528,6 +675,14 @@
          </div>
       </div>
       <div class="modal__overlay" onclick="closeServiceJobsModal()"></div>
+   </div>
+
+   <!--========== GALLERY MODAL ==========-->
+   <div class="gallery-modal" id="gallery-modal">
+      <button class="gallery-close-modal" id="gallery-close-modal">&times;</button>
+      <div class="gallery-modal-content">
+         <img src="" alt="" class="gallery-modal-image" id="gallery-modal-image">
+      </div>
    </div>
 
    <!--=============== SCROLLREVEAL ===============-->

@@ -43,12 +43,57 @@ const swiperServices = new Swiper('.services__swiper', {
    grabCursor: true,
    spaceBetween: 24,
    slidesPerView: 'auto',
+   
+   // Autoplay configuration
+   autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+   },
 
    navigation: {
      nextEl: '.swiper-button-next',
      prevEl: '.swiper-button-prev',
    },
+   
+   // Responsive breakpoints
+   breakpoints: {
+      640: {
+         slidesPerView: 1,
+         spaceBetween: 20,
+      },
+      768: {
+         slidesPerView: 2,
+         spaceBetween: 24,
+      },
+      1024: {
+         slidesPerView: 'auto',
+         spaceBetween: 24,
+      },
+   },
+   
+   // Event callbacks
+   on: {
+      slideChange: function () {
+         updateServiceIndicators(this.realIndex);
+      },
+   },
 })
+
+// Function to update service indicators
+function updateServiceIndicators(activeIndex) {
+   const indicators = document.querySelectorAll('.services__indicator-dot');
+   indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === activeIndex);
+   });
+}
+
+// Add click functionality to indicators
+document.querySelectorAll('.services__indicator-dot').forEach((dot, index) => {
+   dot.addEventListener('click', () => {
+      swiperServices.slideToLoop(index);
+   });
+});
 
 /*=============== SHOW SCROLL UP ===============*/ 
 const scrollUp = () =>{
@@ -95,6 +140,7 @@ sr.reveal(`.home__images`, {origin: 'bottom', delay: 1000})
 sr.reveal(`.about__images, .contact__img`, {origin: 'left'})
 sr.reveal(`.about__data, .contact__data`, {origin: 'right'})
 sr.reveal(`.projects__card`, {interval: 100})
+sr.reveal(`.gallery-photo-card`, {interval: 200})
 
 /*=============== PROJECT MODAL ===============*/
 let modalSwiper;
@@ -359,3 +405,72 @@ function showServicePhotos(serviceId) {
       },
    });
 }
+
+/*=============== GALLERY ===============*/
+// Variables del modal de galería
+const galleryModal = document.getElementById('gallery-modal');
+const galleryModalImage = document.getElementById('gallery-modal-image');
+const galleryCloseModal = document.getElementById('gallery-close-modal');
+const galleryPhotoCards = document.querySelectorAll('.gallery-photo-card');
+
+// Funcionalidad del modal de galería
+galleryPhotoCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const img = card.querySelector('.gallery-photo-image');
+        galleryModalImage.src = img.src;
+        galleryModalImage.alt = img.alt;
+        galleryModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Cerrar modal con botón
+galleryCloseModal.addEventListener('click', () => {
+    galleryModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+});
+
+// Cerrar modal clickeando fuera de la imagen
+galleryModal.addEventListener('click', (e) => {
+    if (e.target === galleryModal) {
+        galleryModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Funcionalidad de filtros
+const galleryFilterButtons = document.querySelectorAll('.gallery-filter-btn');
+const galleryGrid = document.getElementById('gallery-grid');
+
+galleryFilterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remover clase active de todos los botones
+        galleryFilterButtons.forEach(btn => btn.classList.remove('active'));
+        // Agregar clase active al botón clickeado
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+        
+        galleryPhotoCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInScale 0.6s ease-out';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Animación de entrada escalonada
+galleryPhotoCards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.1}s`;
+});
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && galleryModal.style.display === 'block') {
+        galleryModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+});
