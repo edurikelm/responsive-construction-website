@@ -849,9 +849,15 @@ img {
 
 .gallery-modal-image {
   width: 100%;
-  height: auto;
-  border-radius: 15px;
+  height: 800px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 1200px) {
+  .gallery-modal-image {
+    height: auto;
+  }
+  
 }
 
 .gallery-close-modal {
